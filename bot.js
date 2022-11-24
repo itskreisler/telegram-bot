@@ -46,9 +46,15 @@ bot.onText(
     if (validateDomain(url)) {
       await tiktokDL(url, (x) => {
         if (!x.code) {
-          bot.sendVideo(chatId, x.domain + x.data.hdplay, {
-            caption: x.data.title,
-          });
+          bot
+            .sendVideo(chatId, x.domain + x.data.hdplay, {
+              caption: x.data.title,
+            })
+            .catch((e) => {
+              bot.sendVideo(chatId, x.domain + x.data.play, {
+                caption: x.data.title,
+              });
+            });
         } else {
           bot.sendMessage(chatId, lang.error);
         }
@@ -143,7 +149,6 @@ bot.on("callback_query", (callbackQuery) => {
       break;
     default:
       //const [, , url] = callbackQuery.data.split("|");
-
       //console.log(url);
       break;
   }
