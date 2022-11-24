@@ -1,8 +1,6 @@
-export const validateDomain = url => {
-    let domain = url.split('/')[2];
-    
-    if(domain === 'www.tiktok.com') return true;
-    if(domain === 'vm.tiktok.com') return true;
-    
-    return false;
-}
+export const validateDomain = (url) => {
+  let domain = url.split("/")[2];
+  const array = ["www.tiktok.com", "vm.tiktok.com"];
+  const ifDomain = (e) => e === domain;
+  return array.some(ifDomain);
+};

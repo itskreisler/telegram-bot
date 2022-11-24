@@ -1,18 +1,27 @@
 {
-  "name": "bot-download-tiktok",
+  "name": "bot-telegram-beta",
   "version": "1.0.1",
   "description": "Download tiktok videos",
   "main": "bot.js",
   "type": "module",
   "scripts": {
     "start": "node ./bot.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./bot.js",
+    "test": "nodemon ./bot.test.js"
   },
   "keywords": [],
-  "author": "zalazarc20",
+  "author": "kreisler",
   "license": "ISC",
   "dependencies": {
-    "node-telegram-bot-api": "^0.57.0",
+    "node-telegram-bot-api": "^0.60.0",
     "tiktok-scraper-without-watermark": "^1.1.3"
+  },
+  "devDependencies": {
+    "axios": "^1.2.0",
+    "dotenv": "^16.0.3",
+    "fetch": "^1.1.0",
+    "flatted": "^3.2.7",
+    "nodemon": "^2.0.20",
+    "querystring": "^0.2.1"
   }
 }
