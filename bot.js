@@ -2,7 +2,7 @@ import { lang } from "./src/language.js";
 import { typeOptions } from "./src/helpers.js";
 import { bot } from "./src/bot.js";
 import { cmds } from "./src/commands/comandos.js";
-import { BOT_ID as bot_id } from "./src/config.js";
+
 if (lang.welcome === "") lang.cb("en");
 
 bot.setMyCommands([
@@ -25,7 +25,7 @@ bot.setMyCommands([
 ]);
 cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb));
 
-bot.on("message", async (message) => {});
+//bot.on("message", async (message) => {});
 
 bot.on("inline_query", (msg) => {
   const { id, query } = msg;
@@ -65,7 +65,7 @@ bot.on("polling_error", function (error) {
 
 bot.on("callback_query", (callbackQuery) => {
   const { text, action } = typeOptions(callbackQuery);
-  console.log(callbackQuery);
+  //console.log(callbackQuery);
   switch (action) {
     case "answerCallbackQuery":
       bot.answerCallbackQuery(callbackQuery.id, {

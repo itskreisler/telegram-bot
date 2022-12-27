@@ -14,9 +14,9 @@ const lang = {
   cb: function (val = "en") {
     switch (val) {
       case "es":
-        this.setWellcome(
-          `🥳 Bienvenido para iniciar el bot envia un link de tiktok \n \n /lang - cambiar idioma`
-        );
+        this.setWellcome(`
+        🥳 Bienvenido\n\n*Comandos disponibles:*\n/start - Iniciar el bot\n/lang - Cambiar el idioma\n/help - Mostrar la ayuda\n/ping - Pong
+          `);
         this.setError("Lo siento, este link NO es de tiktok.😢");
         this.setLang("Selecciona el idioma!");
         this.msgLang = "Cambiaste el idioma del bot a Español";
