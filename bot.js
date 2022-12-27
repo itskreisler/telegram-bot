@@ -1,137 +1,71 @@
-import TelegramBot from "node-telegram-bot-api";
 import { lang } from "./src/language.js";
-import { validateDomain } from "./src/validateDomain.js";
-import { tiktokDL } from "./src/tiktokDL.js";
 import { typeOptions } from "./src/helpers.js";
-import axios from "axios";
-import * as dotenv from "dotenv";
-const {
-  parsed: { TELEGRAM_TOKEN },
-} = dotenv.config();
-const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
+import { bot } from "./src/bot.js";
+import { cmds } from "./src/commands/comandos.js";
+import { BOT_ID as bot_id } from "./src/config.js";
 if (lang.welcome === "") lang.cb("en");
 
-// start message
-bot.onText(/^\/start/, (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, lang.welcome);
+bot.setMyCommands([
+  {
+    command: "start",
+    description: "Iniciar el bot",
+  },
+  {
+    command: "lang",
+    description: "Cambiar el idioma",
+  },
+  {
+    command: "help",
+    description: "Mostrar la ayuda",
+  },
+  {
+    command: "ping",
+    description: "pong",
+  },
+]);
+cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb));
+
+bot.on("message", async (message) => {});
+
+bot.on("inline_query", (msg) => {
+  const { id, query } = msg;
+  if (query.length === 0 || !!query) return;
+  const inlineQueryResults = [
+    {
+      type: "article",
+      id: `id|1`,
+      title: `Opción 1: ${query}`,
+      input_message_content: {
+        message_text: "Has seleccionado la opción 1",
+      },
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: "uno", callback_data: "test|0" }],
+          [{ text: "cero", callback_data: "test|1" }],
+        ],
+      },
+    },
+  ];
+  bot.answerInlineQuery(id, inlineQueryResults, { cache_time: 10 });
 });
-// ping pong
-bot.onText(/^\/ping/, (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, "pong");
-});
-// language
-bot.onText(/^\/lang/, (msg) => {
-  let chatId = msg.chat.id;
 
-  let options = {
-    reply_markup: JSON.stringify({
-      inline_keyboard: [
-        [{ text: "🇪🇸 Spanish", callback_data: "lang|es" }],
-        [{ text: "🇺🇸 English", callback_data: "lang|en" }],
-      ],
-    }),
-  };
-
-  bot.sendMessage(chatId, lang.lang, options);
-});
-// detect url
-bot.onText(
-  /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:((www|[a-zA-Z0-9]+)\.))?([^:\/\n\?\=]+)/,
-  async (msg, math) => {
-    let chatId = msg.chat.id;
-    let url = math.input;
-
-    if (validateDomain(url)) {
-      await tiktokDL(url, (x) => {
-        if (!x.code) {
-          bot
-            .sendVideo(chatId, x.domain + x.data.hdplay, {
-              caption: x.data.title,
-            })
-            .catch((e) => {
-              bot.sendVideo(chatId, x.domain + x.data.play, {
-                caption: x.data.title,
-              });
-            });
-        } else {
-          bot.sendMessage(chatId, lang.error);
-        }
-
-        //console.log(x.domain + x.data.play);
-      });
-      //bot.sendMessage(chatId, JSON.stringify(x));
-    } else {
-    }
+bot.on("chosen_inline_result", async (result) => {
+  /* if (typeof chatID === "undefined") {
+    console.error("Sin identificación de chat para esta consulta en línea");
+    return;
   }
-);
 
-// yt
-bot.onText(
-  /^http.?:.*(?:youtube.com\/|youtu.be\/)(?:watch\?v=|watch\?t=.*v=|embed\/|)(\w{11})/g,
-  async (msg, math) => {
-    //console.log(math);
-    let { searchParams, pathname } = new URL(msg.text);
-    let v;
-    if (!searchParams.get("v")) {
-      const [, path] = pathname.split("/");
-      v = path;
-    } else {
-      v = searchParams.get("v");
-    }
-    const cal = ["maxresdefault", "sddefault", "hqdefault", "mqdefault"];
-    /* const imgs = cal.map((_) => ({
-      url: `https://img.youtube.com/vi/${v}/${_}.jpg`,
-    })); */
-    let chatId = msg.chat.id;
-    let options = {
-      reply_markup: JSON.stringify({
-        inline_keyboard: cal.map((_) => [
-          {
-            text: _,
-            url: `https://img.youtube.com/vi/${v}/${_}.jpg`,
-          },
-        ]),
-      }),
-    };
-
-    bot.sendMessage(chatId, "Seleciona la calidad de la imagen", options);
-    //console.log(imgs);
-  }
-);
-bot.onText(/^\/off/g, async () => {
-  console.log("apagando...");
-  //throw new Error("apagando...");
-});
-//ip
-bot.onText(/^\/ip/, async (msg) => {
-  const ipAPI = "https://api.ipify.org/?format=json",
-    geoLocation = (_) => `https://sys.airtel.lv/ip2country/${_}/?full=true`;
-  const req = await axios.get(ipAPI);
-  const res = await req.data;
-  console.log(res);
-  /* fetchUrl(
-    `https://api.thecatapi.com/v1/images/search`,
-    function (error, meta, body) {
-      const [info] = JSON.parse(body);
-      console.log(info);
-      bot.sendPhoto(msg.chat.id, info.url, {
-        caption: "I'm a bot!",
-      });
-    }
-  ); */
-
-  bot.sendMessage(msg.chat.id, `Your IP address is ${res.ip}`);
+  //bot.sendMessage(result.from.id, result.result_id);
+  await bot.sendMessage(chatID, "message", { parse_mode: "HTML" }); */
 });
 
-// get errors
 bot.on("polling_error", function (error) {
-  console.log(error);
+  console.error(error);
 });
-// get language options
+
 bot.on("callback_query", (callbackQuery) => {
   const { text, action } = typeOptions(callbackQuery);
+  console.log(callbackQuery);
   switch (action) {
     case "answerCallbackQuery":
       bot.answerCallbackQuery(callbackQuery.id, {
@@ -148,8 +82,7 @@ bot.on("callback_query", (callbackQuery) => {
       bot.editMessageText(text, opts);
       break;
     default:
-      //const [, , url] = callbackQuery.data.split("|");
-      //console.log(url);
+      console.log("🚀 ~ file: bot.js:85 ~ bot.on", "press btn");
       break;
   }
 });

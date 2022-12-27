@@ -30,3 +30,16 @@ const tiktokDL = async (url, cb) => {
 // tiktokDL("https://vm.tiktok.com/ZMF9BkX5f/", (x) => {
 //   console.log(x);
 // });
+
+const savevideo = () => {
+  axios
+    .get("x.domain + x.data.hdplay", {
+      responseType: "arraybuffer",
+    })
+    .then((respuesta) => {
+      fs.writeFileSync("archivodescargado.mp4", respuesta.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};

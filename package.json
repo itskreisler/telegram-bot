@@ -1,7 +1,7 @@
 {
   "name": "bot-telegram-beta",
-  "version": "1.0.1",
-  "description": "Download tiktok videos",
+  "version": "1.0.2",
+  "description": "multiples implementaciones",
   "main": "bot.js",
   "type": "module",
   "scripts": {
@@ -14,6 +14,7 @@
   "author": "kreisler",
   "license": "ISC",
   "dependencies": {
+    "@kreisler/js-jsondb": "^1.0.8",
     "node-telegram-bot-api": "^0.60.0",
     "tiktok-scraper-without-watermark": "^1.1.3"
   },

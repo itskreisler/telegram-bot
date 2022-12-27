@@ -1,7 +1,6 @@
 import { fetchUrl } from "fetch";
 import querystring from "querystring";
 export const tiktokDL = async (url, cb) => {
-  const temp = "./temp/temp.json";
   const domain = "https://www.tikwm.com";
   const body = {
     url,
@@ -12,11 +11,12 @@ export const tiktokDL = async (url, cb) => {
   };
   fetchUrl(
     `${domain}/api/?${querystring.stringify(body)}`,
-    function (error, meta, body) {
+    function (_error, _meta, body) {
       //console.log("data" in body);
       //fs.writeFileSync(temp, body);
       //const rawdata = fs.readFileSync(temp);
       const info = JSON.parse(body);
+
       cb({ ...info, domain });
     }
   );
