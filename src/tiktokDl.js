@@ -1,6 +1,6 @@
 import { fetchUrl } from "fetch";
 import querystring from "querystring";
-export const tiktokDL = async (url, cb) => {
+export const tiktokDl = async (url, cb) => {
   const domain = "https://www.tikwm.com";
   const body = {
     url,

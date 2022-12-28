@@ -1,6 +1,6 @@
 import { bot } from "../bot.js";
 import { validateDomain } from "../validateDomain.js";
-import { tiktokDL } from "../tiktokDL.js";
+import { tiktokDL } from "../tiktokDl.js";
 
 const cmdUrlTikTokRegExp =
   /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:((www|[a-zA-Z0-9]+)\.))?([^:\/\n\?\=]+)/;
