@@ -1,6 +1,6 @@
 import { bot } from "../bot.js";
 import { validateDomain } from "../validateDomain.js";
-import { tiktokDL } from "../tiktokDl.js";
+import { tiktokDl } from "../tiktokDl.js";
 
 const cmdUrlTikTokRegExp =
   /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:((www|[a-zA-Z0-9]+)\.))?([^:\/\n\?\=]+)/;
@@ -10,7 +10,7 @@ const cmdUrlTikTokFn = async (msg, math) => {
   let url = math.input;
 
   if (validateDomain(url)) {
-    await tiktokDL(url, async (x) => {
+    await tiktokDl(url, async (x) => {
       if (!x.code) {
         if ("images" in x.data) {
           try {
