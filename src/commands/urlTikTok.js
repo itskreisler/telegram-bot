@@ -16,30 +16,44 @@ const cmdUrlTikTokFn = async (msg, math) => {
           try {
             /* Promise.all(
               x.data.images.map((_, i) =>
-                bot.sendPhoto(chatId, _, { caption: i })
+                bot.sendPhoto(chatId, _, { caption: `Esta es la imagen ${i}` })
               )
             ).then(() => {
               bot.sendMessage(chatId, {});
             }); */
-
-            Promise.all([
-              bot.sendMediaGroup(
-                chatId,
-                x.data.images.map((media, i) => ({
-                  type: "photo",
-                  media,
-                  caption: `Esta es la imagen ${i}`,
-                }))
-              ),
-            ]).then(async () => {
-              await bot.sendMessage(
-                chatId,
-                x.data.title == null ? msg.text : x.data.title,
-                {
-                  parse_mode: "Markdown",
-                }
-              );
-            });
+            if (x.data.images.length < 2 || x.data.images.length > 10) {
+              Promise.all(
+                x.data.images.map((_, i) =>
+                  bot.sendPhoto(chatId, _, {
+                    caption: `img ${i}`,
+                  })
+                )
+              ).then(() => {
+                bot.sendMessage(
+                  chatId,
+                  x.data.title == null ? msg.text : x.data.title
+                );
+              });
+            } else {
+              Promise.all([
+                bot.sendMediaGroup(
+                  chatId,
+                  x.data.images.map((media, i) => ({
+                    type: "photo",
+                    media,
+                    caption: `img ${i}`,
+                  }))
+                ),
+              ]).then(async () => {
+                await bot.sendMessage(
+                  chatId,
+                  x.data.title == null ? msg.text : x.data.title,
+                  {
+                    parse_mode: "Markdown",
+                  }
+                );
+              });
+            }
           } catch (_error) {
             bot.sendMessage(
               chatId,
