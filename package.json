@@ -10,6 +10,11 @@
     "test": "nodemon ./bot.test.js",
     "prod": "sh runbot.sh"
   },
+  "eslintConfig": {
+    "extends": [
+      "standard"
+    ]
+  },
   "keywords": [],
   "author": "kreisler",
   "license": "ISC",
@@ -24,6 +29,7 @@
     "fetch": "^1.1.0",
     "flatted": "^3.2.7",
     "nodemon": "^2.0.20",
-    "querystring": "^0.2.1"
+    "querystring": "^0.2.1",
+    "standard": "^17.0.0"
   }
 }
