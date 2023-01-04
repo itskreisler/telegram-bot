@@ -9,7 +9,7 @@ const cmdOffFn = async (msg) => {
     bot.sendMessage(chatId, 'Usuario no autorizado')
   } else {
     bot.sendMessage(chatId, 'Apagando...')
-    // throw new Error('Apagando...')
+    throw new Error('Apagando...')
   }
 }
 

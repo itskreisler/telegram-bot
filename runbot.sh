@@ -4,6 +4,7 @@ do
     rand=$RANDOM
     dt=$(date '+%d/%m/%Y %H:%M:%S');
     printf "${dt} - Init: ${rand}\n"
+    git pull
     echo "Starting NODE bot"
     node bot.js #npm run dev
     echo "Script terminated, restarting in 2 minutes..."
