@@ -23,5 +23,7 @@ src/json/**
 *.njsproj
 *.sln
 *.sw?
-
+*.test.cjs
+*.test.mjs
+*.test.js
 .env
