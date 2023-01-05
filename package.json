@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node ./bot.js",
     "dev": "nodemon ./bot.js",
-    "test": "nodemon ./bot.test.js",
+    "test:js": "node ./bot.test.js",
+    "test:cjs": "node ./bot.test.cjs",
+    "test:mjs": "node ./bot.test.mjs",
     "prod": "sh runbot.sh"
   },
   "eslintConfig": {
@@ -30,7 +32,9 @@
     "fetch": "^1.1.0",
     "flatted": "^3.2.7",
     "nodemon": "^2.0.20",
+    "path": "^0.12.7",
     "querystring": "^0.2.1",
-    "standard": "^17.0.0"
+    "standard": "^17.0.0",
+    "url": "^0.11.0"
   }
 }

@@ -2,8 +2,10 @@ import { lang } from './src/language.js'
 import { typeOptions } from './src/helpers.js'
 import { bot } from './src/bot.js'
 import { cmds } from './src/commands/comandos.js'
+import { userExist, userDb, userJson } from './src/db/users.db.js'
+import { cmdlangReplyMarkup } from './src/commands/lang.js'
 
-if (lang.welcome === '') lang.cb('en')
+// if (lang.welcome === '') lang.cb('en')
 
 bot.setMyCommands([
   {
@@ -29,7 +31,29 @@ bot.setMyCommands([
 ])
 cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb))
 
-// bot.on("message", async (message) => {});
+bot.on('message', async (msg) => {
+  const { from } = msg
+  const [user] = userExist(from.id)
+
+  // console.log(from)
+  if (user && !from.is_bot) {
+    /* userDb.update(
+      userJson,
+      (element) => element.id === from.id,
+      from
+    ) */
+  } else {
+    userDb.insert(userJson, { ...from, setLang: 'en' })
+  }
+  const [getLang] = userDb.select(userJson, ({ id }) => id === from.id)
+  if (typeof getLang !== 'undefined') {
+    // eslint-disable-next-line no-prototype-builtins
+    if (getLang.hasOwnProperty('setLang')) {
+      const { setLang } = getLang
+      lang.cb(setLang)
+    }
+  }
+})
 
 bot.on('inline_query', (msg) => {
   const { id, query } = msg
@@ -72,6 +96,11 @@ bot.on('callback_query', (callbackQuery) => {
   // console.log(callbackQuery);
   switch (action) {
     case 'answerCallbackQuery':
+      bot.editMessageText(lang.lang, {
+        chat_id: callbackQuery.message.chat.id,
+        message_id: callbackQuery.message.message_id,
+        reply_markup: cmdlangReplyMarkup
+      })
       bot.answerCallbackQuery(callbackQuery.id, {
         text,
         show_alert: true

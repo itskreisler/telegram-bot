@@ -35,6 +35,9 @@ const cmdUrlTikTokFn = async (msg, math) => {
   if (validateDomain(url)) {
     await tiktokDl(url, async (x) => {
       if (!x.code) {
+        const isLoading = await bot.sendMessage(chatId, 'Enviando...')
+        const deleteIsLoading = async () => await bot.deleteMessage(chatId, isLoading.message_id)
+
         const globalTitle =
           x.data.title == null
             ? `by @${x.data.author.unique_id}`
@@ -83,6 +86,8 @@ const cmdUrlTikTokFn = async (msg, math) => {
               chatId,
               'Ocurrio un error al enviar las imagenes.\nVuelve a intentarlo más tarde. :)'
             )
+          } finally {
+            deleteIsLoading()
           }
         } else {
           const urlPLay = (str) => x.domain + x.data[str]
@@ -133,6 +138,8 @@ const cmdUrlTikTokFn = async (msg, math) => {
               caption: globalTitle,
               reply_markup: replyMarkupVideo
             })
+          } finally {
+            deleteIsLoading()
           }
         }
       } else {

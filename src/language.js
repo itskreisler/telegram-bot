@@ -24,7 +24,7 @@ const lang = {
         break
       default:
         this.setWellcome(
-          '🥳 Welcome, to start the bot send me a the tiktok link, please!! ✅ \n \n /lang - change language'
+          '*🥳 Welcome, to start the bot send me a the tiktok link or youtube link, please!! ✅* \n \n /lang - change language'
         )
         this.setError('Sorry this link is not a tiktok link.😢')
         this.setLang('Select your favorite Language!')
