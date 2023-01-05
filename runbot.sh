@@ -1,6 +1,8 @@
 #!/bin/bash
+
 #screen -X -S [session # you want to kill] kill
 #screen -r [session # you want to resume]
+#screen -S mi_sesion
 while :
 do
     rand=$RANDOM
