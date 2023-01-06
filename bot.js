@@ -2,10 +2,10 @@ import { lang } from './src/language.js'
 import { typeOptions } from './src/helpers.js'
 import { bot } from './src/bot.js'
 import { cmds } from './src/commands/comandos.js'
-import { userExist, userDb, userJson } from './src/db/users.db.js'
+// import { userExist, userDb, userJson } from './src/db/users.db.js'
 import { cmdlangReplyMarkup } from './src/commands/lang.js'
 
-// if (lang.welcome === '') lang.cb('en')
+if (lang.welcome === '') lang.cb('en')
 
 bot.setMyCommands([
   {
@@ -31,17 +31,17 @@ bot.setMyCommands([
 ])
 cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb))
 
-bot.on('message', async (msg) => {
+/* bot.on('message', async (msg) => {
   const { from } = msg
   const [user] = userExist(from.id)
 
   // console.log(from)
   if (user && !from.is_bot) {
-    /* userDb.update(
+     userDb.update(
       userJson,
       (element) => element.id === from.id,
       from
-    ) */
+    )
   } else {
     userDb.insert(userJson, { ...from, setLang: 'en' })
   }
@@ -53,7 +53,7 @@ bot.on('message', async (msg) => {
       lang.cb(setLang)
     }
   }
-})
+}) */
 
 bot.on('inline_query', (msg) => {
   const { id, query } = msg

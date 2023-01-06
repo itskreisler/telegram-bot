@@ -134,10 +134,17 @@ const cmdUrlTikTokFn = async (msg, math) => {
               reply_markup: replyMarkupVideo
             })
           } catch (_error) {
-            await bot.sendVideo(chatId, urlPLay('play'), {
-              caption: globalTitle,
-              reply_markup: replyMarkupVideo
-            })
+            try {
+              await bot.sendVideo(chatId, urlPLay('play'), {
+                caption: globalTitle,
+                reply_markup: replyMarkupVideo
+              })
+            } catch (error) {
+              await bot.sendPhoto(chatId, urlPLay('cover'), {
+                caption: globalTitle,
+                reply_markup: replyMarkupVideo
+              })
+            }
           } finally {
             deleteIsLoading()
           }

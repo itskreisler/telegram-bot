@@ -31,4 +31,15 @@ npm cache clean
 npm install --no-bin-links
 ```
 
+## run sh
+
+```sh
+# screen -S [name]
+screen -S mi_sesion
+# screen -X -S [session # you want to kill] kill
+screen -X -S mi_sesion kill
+# screen -r [session # you want to resume]
+screen -r mi_sesion
+```
+
 ### The bot already detects tiktok links and changes the language to English and Spanish (more languages ​​can be added) 😎👍
