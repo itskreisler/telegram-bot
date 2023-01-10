@@ -57,24 +57,30 @@ cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb))
 
 bot.on('inline_query', (msg) => {
   const { id, query } = msg
-  if (query.length === 0 || !!query) return
+  if (query.length === 0 || !query) return
   const inlineQueryResults = [
     {
       type: 'article',
       id: 'id|1',
       title: `Opción 1: ${query}`,
+      description: 'description',
       input_message_content: {
         message_text: 'Has seleccionado la opción 1'
       },
       reply_markup: {
         inline_keyboard: [
-          [{ text: 'uno', callback_data: 'test|0' }],
-          [{ text: 'cero', callback_data: 'test|1' }]
+          [{ text: 'cambiarElChatActualDeConsultaEnLínea', switch_inline_query_current_chat: '... ' }],
+          [{ text: 'datosDeDevoluciónDeLlamada', callback_data: 'test|1' },
+            { text: 'url', url: 'https://example.com/' }]
         ]
       }
     }
   ]
-  bot.answerInlineQuery(id, inlineQueryResults, { cache_time: 10 })
+  bot.answerInlineQuery(id, inlineQueryResults, {
+    cache_time: 10,
+    switch_pm_text: 'Modo de uso',
+    switch_pm_parameter: 'help'
+  })
 })
 
 bot.on('chosen_inline_result', async (result) => {
@@ -82,7 +88,6 @@ bot.on('chosen_inline_result', async (result) => {
     console.error("Sin identificación de chat para esta consulta en línea");
     return;
   }
-
   //bot.sendMessage(result.from.id, result.result_id);
   await bot.sendMessage(chatID, "message", { parse_mode: "HTML" }); */
 })
@@ -117,7 +122,10 @@ bot.on('callback_query', (callbackQuery) => {
       })()
       break
     default:
-      console.log('hola mundo')
+      bot.answerCallbackQuery(callbackQuery.id, {
+        text: 'has preinado un boton',
+        show_alert: true
+      })
       break
   }
 })

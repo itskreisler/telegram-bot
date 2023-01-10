@@ -1,13 +1,13 @@
 import { lang } from './language.js'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
-import { userDb, userJson } from './db/users.db.js'
+// import { userDb, userJson } from './db/users.db.js'
 export const typeOptions = (callbackQuery, cb) => {
   const [type, op] = callbackQuery.data.split('|')
   switch (type) {
     case 'lang':
       // console.log(callbackQuery)
-      userDb.update(userJson, (u) => u.id === callbackQuery.from.id, { setLang: op })
+      // userDb.update(userJson, (u) => u.id === callbackQuery.from.id, { setLang: op })
       lang.cb(op)
       return { text: lang.msgLang, action: 'answerCallbackQuery' }
     case 'edit':
@@ -22,3 +22,23 @@ export const isEmptyArray = (_) => Array.isArray(_) && _.length === 0
 const __filename = fileURLToPath(import.meta.url)
 const path = dirname(__filename)
 export const __dirname = path
+export const binary2Text = (str, args = { zero: '😡', one: '🥺' }) => {
+  const { zero, one } = args
+  return str
+    .replaceAll(zero, '0')
+    .replaceAll(one, '1')
+    .match(/.{1,8}/g)
+    .map((i) => i)
+    .map((i) => parseInt(i, 2))
+    .map((i) => String.fromCharCode(i))
+    .join('')
+}
+export const text2Binary = (str, args = { zero: '😡', one: '🥺' }) => {
+  const { zero, one } = args
+  return [...str]
+    .map((i) => i.charCodeAt().toString(2).padStart(8, '0'))
+    .join('')
+    .replaceAll('0', zero)
+    .replaceAll('1', one)
+}
+export const uniqueKey = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
