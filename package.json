@@ -21,7 +21,7 @@
   "author": "kreisler",
   "license": "ISC",
   "dependencies": {
-    "@kreisler/js-jsondb": "^1.0.8",
+    "@kreisler/js-jsondb": "^2.0.0",
     "node-telegram-bot-api": "^0.60.0"
   },
   "devDependencies": {
