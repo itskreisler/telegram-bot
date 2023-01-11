@@ -1,22 +1,19 @@
 import { bot } from '../bot.js'
 import { executeAI } from '../openai.js'
 
-const isLoading = async (chatId, sms = 'Enviando...') =>
-  await bot.sendMessage(chatId, sms)
-const deleteIsLoading = async (chatId) =>
-  await bot.deleteMessage(chatId, isLoading().message_id)
 export const cmdAmaRegExp = /\/ama (.+)/
 
 export const cmdAmaFn = async (msg, match) => {
   const chatId = msg.chat.id
   const resp = match[1]
-  isLoading(chatId)
+  const isLoading = await bot.sendMessage(chatId, 'Preguntando...')
+  const deleteIsLoading = async () => await bot.deleteMessage(chatId, isLoading.message_id)
   try {
     const req = await executeAI(resp)
     const {
       choices: [{ text }]
     } = await req
-    // console.log(text)
+    // console.log(req)
     bot.sendMessage(chatId, text)
   } catch (error) {
     bot
@@ -29,6 +26,6 @@ export const cmdAmaFn = async (msg, match) => {
         setTimeout(() => bot.deleteMessage(chatId, message_id), 3000)
       )
   } finally {
-    deleteIsLoading(chatId)
+    deleteIsLoading()
   }
 }
