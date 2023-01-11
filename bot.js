@@ -17,8 +17,8 @@ bot.setMyCommands([
     description: 'Cambiar el idioma'
   },
   {
-    command: 'help',
-    description: 'Mostrar la ayuda'
+    command: 'ama',
+    description: 'Ask My Anything ChatGPT'
   },
   {
     command: 'ping',
@@ -55,7 +55,7 @@ cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb))
   }
 }) */
 
-bot.on('inline_query', (msg) => {
+bot.on('inline_query', async (msg) => {
   const { id, query } = msg
   if (query.length === 0 || !query) return
   const inlineQueryResults = [
@@ -76,7 +76,7 @@ bot.on('inline_query', (msg) => {
       }
     }
   ]
-  bot.answerInlineQuery(id, inlineQueryResults, {
+  await bot.answerInlineQuery(id, inlineQueryResults, {
     cache_time: 10,
     switch_pm_text: 'Modo de uso',
     switch_pm_parameter: 'help'
@@ -92,7 +92,7 @@ bot.on('chosen_inline_result', async (result) => {
   await bot.sendMessage(chatID, "message", { parse_mode: "HTML" }); */
 })
 
-bot.on('polling_error', function (error) {
+bot.on('polling_error', (error) => {
   console.error(error)
 })
 

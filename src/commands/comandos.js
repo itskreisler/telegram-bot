@@ -5,6 +5,7 @@ import { cmdUrlTikTokFn, cmdUrlTikTokRegExp } from './urlTikTok.js'
 import { cmdUrlYtFn, cmdUrlYtRegExp } from './urlYt.js'
 import { cmdOffFn, cmdOffRegExp } from './off.js'
 import { cmdUrlFbFn, cmdUrlFbRegExp } from './urlFb.js'
+import { cmdAmaFn, cmdAmaRegExp } from './ama.js'
 
 const cmds = []
 cmds.push({ cmd: cmdStartRegExp, cb: cmdStartFn })
@@ -14,4 +15,5 @@ cmds.push({ cmd: cmdUrlTikTokRegExp, cb: cmdUrlTikTokFn })
 cmds.push({ cmd: cmdUrlYtRegExp, cb: cmdUrlYtFn })
 cmds.push({ cmd: cmdOffRegExp, cb: cmdOffFn })
 cmds.push({ cmd: cmdUrlFbRegExp, cb: cmdUrlFbFn })
+cmds.push({ cmd: cmdAmaRegExp, cb: cmdAmaFn })
 export { cmds }
