@@ -4,7 +4,7 @@ import { AUTHORIZED_USERS } from '../config.js'
 const cmdOffRegExp = /^\/off/g
 
 const cmdOffFn = async (msg) => {
-  // console.log(msg)
+  console.log(msg)
   const [chatId, fromId, msgId] = [msg.chat.id, msg.from.id, msg.message_id]
   if (!AUTHORIZED_USERS.includes(fromId)) {
     bot.sendMessage(chatId, 'Usuario no autorizado')

@@ -31,13 +31,17 @@ bot.setMyCommands([
 ])
 cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb))
 
-/* bot.on('message', async (msg) => {
-  const { from } = msg
-  const [user] = userExist(from.id)
+bot.on('message', async (msg) => {
+  const { text } = msg
+  if (text.startsWith('/')) {
+    const [content] = text.split('/')
+    console.log(content)
+  }
+  // const [user] = userExist(from.id)
 
   // console.log(from)
-  if (user && !from.is_bot) {
-     userDb.update(
+  /* if (user && !from.is_bot) {
+    userDb.update(
       userJson,
       (element) => element.id === from.id,
       from
@@ -52,8 +56,8 @@ cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb))
       const { setLang } = getLang
       lang.cb(setLang)
     }
-  }
-}) */
+  } */
+})
 
 bot.on('inline_query', async (msg) => {
   const { id, query } = msg

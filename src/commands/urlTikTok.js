@@ -1,6 +1,7 @@
 import { bot } from '../bot.js'
 import { validateDomain } from '../validateDomain.js'
 import { tiktokDl } from '../tiktokDl.js'
+import { converterMb } from '../helpers.js'
 
 const cmdUrlTikTokRegExp =
   /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:((www|[a-zA-Z0-9]+).))?([^:\n?=]+)/
@@ -10,23 +11,6 @@ const cmdUrlTikTokRegExp =
  * @param {number} size
  * @return {string}
  */
-const converterMb = (size) => (size / 1024 / 1024).toFixed(2)
-async function sendMediaGroup (chatId, images) {
-  // Divide las imágenes en grupos de 10
-  const chunkedImages = images.reduce((acc, cur, i) => {
-    if (i % 10 === 0) {
-      acc.push([cur])
-    } else {
-      acc[acc.length - 1].push(cur)
-    }
-    return acc
-  }, [])
-
-  // Envía cada grupo de 10 imágenes
-  for (const chunk of chunkedImages) {
-    await bot.sendMediaGroup(chatId, chunk)
-  }
-}
 
 const cmdUrlTikTokFn = async (msg, math) => {
   const chatId = msg.chat.id

@@ -1,6 +1,7 @@
 import { lang } from './language.js'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+import { bot } from './bot.js'
 // import { userDb, userJson } from './db/users.db.js'
 export const typeOptions = (callbackQuery, cb) => {
   const [type, op] = callbackQuery.data.split('|')
@@ -42,3 +43,20 @@ export const text2Binary = (str, args = { zero: '😡', one: '🥺' }) => {
     .replaceAll('1', one)
 }
 export const uniqueKey = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+export const converterMb = (size) => (size / 1024 / 1024).toFixed(2)
+export async function sendMediaGroup (chatId, images) {
+  // Divide las imágenes en grupos de 10
+  const chunkedImages = images.reduce((acc, cur, i) => {
+    if (i % 10 === 0) {
+      acc.push([cur])
+    } else {
+      acc[acc.length - 1].push(cur)
+    }
+    return acc
+  }, [])
+
+  // Envía cada grupo de 10 imágenes
+  for (const chunk of chunkedImages) {
+    await bot.sendMediaGroup(chatId, chunk)
+  }
+}
