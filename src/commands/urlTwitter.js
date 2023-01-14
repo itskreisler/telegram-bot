@@ -72,7 +72,9 @@ export const cmdTwitterFn = async (msg, match) => {
           bot.sendMessage(id, globalTitle)
         }).catch(() => {
           const { url } = resvideo.variants.shift()
-          Promise.all([bot.sendVideo(id, url)]).catch(() => {
+          Promise.all([bot.sendVideo(id, url)]).then(() => {
+            bot.sendMessage(id, globalTitle)
+          }).catch(() => {
             console.log('(catch) #0'.red)
             bot.sendMessage(id, 'Seleciona la calidad del video', options)
           })
@@ -136,7 +138,9 @@ export const cmdTwitterFn = async (msg, match) => {
             bot.sendMessage(id, globalTitle)
           }).catch(() => {
             const { url } = resvideo.variants.shift()
-            Promise.all([bot.sendVideo(id, url)]).catch(() => {
+            Promise.all([bot.sendVideo(id, url)]).then(() => {
+              bot.sendMessage(id, globalTitle)
+            }).catch(() => {
               console.log('(catch) #0'.red)
               bot.sendMessage(id, 'Seleciona la calidad del video', options)
             })
