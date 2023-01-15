@@ -21,20 +21,22 @@
   "author": "kreisler",
   "license": "ISC",
   "dependencies": {
-    "@kreisler/js-jsondb": "^2.0.0",
-    "node-telegram-bot-api": "^0.61.0",
-    "openai": "^3.1.0"
+    "@kreisler/js-jsondb": "lastest",
+    "node-telegram-bot-api": "lastest",
+    "openai": "lastest"
   },
   "devDependencies": {
-    "axios": "^1.2.0",
-    "colors": "^1.4.0",
-    "dotenv": "^16.0.3",
-    "fetch": "^1.1.0",
-    "flatted": "^3.2.7",
-    "nodemon": "^2.0.20",
-    "path": "^0.12.7",
-    "querystring": "^0.2.1",
-    "standard": "^17.0.0",
-    "url": "^0.11.0"
+    "axios": "lastest",
+    "colors": "lastest",
+    "dotenv": "lastest",
+    "fetch": "lastest",
+    "flatted": "lastest",
+    "glob": "lastest",
+    "nodemon": "lastest",
+    "path": "lastest",
+    "querystring": "lastest",
+    "standard": "lastest",
+    "url": "lastest",
+    "util": "lastest"
   }
 }
