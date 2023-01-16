@@ -22,6 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "@kreisler/js-jsondb": "lastest",
+    "ffmpeg": "^0.0.4",
     "node-telegram-bot-api": "lastest",
     "openai": "lastest"
   },
@@ -31,10 +32,13 @@
     "dotenv": "lastest",
     "fetch": "lastest",
     "flatted": "lastest",
+    "fluent-ffmpeg": "latest",
     "glob": "lastest",
     "nodemon": "lastest",
     "path": "lastest",
+    "prettysize": "latest",
     "querystring": "lastest",
+    "request": "latest",
     "standard": "lastest",
     "url": "lastest",
     "util": "lastest"
