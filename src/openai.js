@@ -41,7 +41,7 @@ export const executeAI = async (
   args = {
     model: 'text-davinci-003',
     temperature: 0,
-    maxTokens: 256,
+    maxTokens: 512, // old 256
     topP: 1,
     frequencyPenalty: 0,
     presencePenalty: 0,

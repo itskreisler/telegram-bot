@@ -5,12 +5,22 @@ import { converterMb } from '../helpers.js'
 
 const cmdUrlTikTokRegExp =
   /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:((www|[a-zA-Z0-9]+).))?([^:\n?=]+)/
+const sendMediaGroupTenByTen = async (chatId, images, options = {}) => {
+  // Divide las imágenes en grupos de 10
+  const chunkedImages = images.reduce((acc, cur, i) => {
+    if (i % 10 === 0) {
+      acc.push([cur])
+    } else {
+      acc[acc.length - 1].push(cur)
+    }
+    return acc
+  }, [])
 
-/**
- * Convierta un tamaño en bytes a megabytes y devuelva una cadena con dos decimales.
- * @param {number} size
- * @return {string}
- */
+  // Envía cada grupo de 10 imágenes
+  for (const chunk of chunkedImages) {
+    await bot.sendMediaGroup(chatId, chunk, options)
+  }
+}
 
 const cmdUrlTikTokFn = async (msg, math) => {
   const chatId = msg.chat.id
@@ -40,7 +50,7 @@ const cmdUrlTikTokFn = async (msg, math) => {
                 bot.sendMessage(chatId, globalTitle)
               }) */
               Promise.all([
-                sendMediaGroup(
+                sendMediaGroupTenByTen(
                   chatId,
                   x.data.images.map((media, i) => ({
                     type: 'photo',
