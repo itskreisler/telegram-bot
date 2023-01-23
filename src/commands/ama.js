@@ -1,7 +1,7 @@
 import { bot } from '../bot.js'
 import { executeAI } from '../openai.js'
 
-export const cmdAmaRegExp = /\/ama (.+)/
+export const cmdAmaRegExp = /\/ama(\s+)((.|\n)+)$/im
 
 export const cmdAmaFn = async (msg, match) => {
   const chatId = msg.chat.id
