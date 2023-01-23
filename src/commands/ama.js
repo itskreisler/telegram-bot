@@ -5,7 +5,7 @@ export const cmdAmaRegExp = /\/ama(\s+)((.|\n)+)$/im
 
 export const cmdAmaFn = async (msg, match) => {
   const chatId = msg.chat.id
-  const resp = match[1]
+  const [,, resp] = match
   const isLoading = await bot.sendMessage(chatId, 'Preguntando...')
   const deleteIsLoading = async () => await bot.deleteMessage(chatId, isLoading.message_id)
   try {
