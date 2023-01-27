@@ -3,7 +3,6 @@ const cmdUrlYtRegExp =
   /(?:https?:)?(?:\/\/)?(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*?[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/gim
 
 const cmdUrlYtFn = async (msg, math) => {
-  // console.log(math);
   const { searchParams, pathname } = new URL(msg.text)
   let v
   if (!searchParams.get('v')) {
@@ -35,7 +34,6 @@ const cmdUrlYtFn = async (msg, math) => {
   }
 
   bot.sendMessage(chatId, 'Seleciona la calidad de la imagen', options)
-  // console.log(imgs);
 }
 
 export { cmdUrlYtFn, cmdUrlYtRegExp }

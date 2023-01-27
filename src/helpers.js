@@ -7,7 +7,7 @@ export const typeOptions = (callbackQuery, cb) => {
   const [type, op] = callbackQuery.data.split('|')
   switch (type) {
     case 'lang':
-      // console.log(callbackQuery)
+
       // userDb.update(userJson, (u) => u.id === callbackQuery.from.id, { setLang: op })
       lang.cb(op)
       return { text: lang.msgLang, action: 'answerCallbackQuery' }

@@ -32,14 +32,9 @@ bot.setMyCommands([
 cmds.forEach(({ cmd, cb }) => bot.onText(cmd, cb))
 
 bot.on('message', async (msg) => {
-  const { text } = msg
-  if (text.startsWith('/')) {
-    const [content] = text.split('/')
-    console.log(content)
-  }
+
   // const [user] = userExist(from.id)
 
-  // console.log(from)
   /* if (user && !from.is_bot) {
     userDb.update(
       userJson,
@@ -102,7 +97,7 @@ bot.on('polling_error', (error) => {
 
 bot.on('callback_query', (callbackQuery) => {
   const { text, action } = typeOptions(callbackQuery)
-  // console.log(callbackQuery);
+
   switch (action) {
     case 'answerCallbackQuery':
       bot.editMessageText(lang.lang, {

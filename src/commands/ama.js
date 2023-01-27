@@ -13,7 +13,7 @@ export const cmdAmaFn = async (msg, match) => {
     const {
       choices: [{ text }]
     } = await req
-    // console.log(req)
+
     bot.sendMessage(chatId, text)
   } catch (error) {
     bot

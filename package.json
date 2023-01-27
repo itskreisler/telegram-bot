@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./bot.js",
+    "dev:start": "node ./lib/index.cjs",
     "dev": "nodemon ./bot.js",
     "test:js": "node ./bot.test.js",
     "test:cjs": "node ./bot.test.cjs",
@@ -27,7 +28,7 @@
     "openai": "3.1.0"
   },
   "devDependencies": {
-    "axios": "1.2.3",
+    "axios": "1.2.5",
     "colors": "1.4.0",
     "dotenv": "16.0.3",
     "fetch": "1.1.0",
