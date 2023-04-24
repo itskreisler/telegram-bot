@@ -12,7 +12,7 @@
     "test:js": "node ./bot.test.js",
     "test:cjs": "node ./bot.test.cjs",
     "test:mjs": "node ./bot.test.mjs",
-    "prod": "sh runbot.sh"
+    "devil": "sh runbot.sh"
   },
   "eslintConfig": {
     "extends": [
