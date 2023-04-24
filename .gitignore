@@ -17,6 +17,7 @@ src/temp/**
 src/tmp/**
 lib/temp/**
 lib/tmp/**
+lib/mooks/**
 temp
 tmp
 # Editor directories and files
