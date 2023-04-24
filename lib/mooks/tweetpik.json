@@ -1,0 +1,19 @@
+[
+    {
+      "id": "1650110877868204032",
+      "name": "KFC",
+      "handler": "@KFC_ES",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1649100609813987329/IMUf_bmv.jpg",
+      "textHtml": "<span class=\"css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0\">elon nos ha pagado el verificado</span>",
+      "verified": true,
+      "url": "https://twitter.com/KFC_ES/status/1650110877868204032",
+      "photos": [
+        "https://pbs.twimg.com/media/FuZfGTHWwAI3Z_I?format=jpg&name=small"
+      ],
+      "index": 0,
+      "likes": 4854,
+      "retweets": 232,
+      "replies": 0,
+      "quotes": 8
+    }
+  ]
