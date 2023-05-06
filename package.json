@@ -25,6 +25,8 @@
   "dependencies": {
     "@kreisler/js-jsondb": "2.0.0",
     "ffmpeg": "^0.0.4",
+    "lodash": "^4.17.21",
+    "node-fetch": "^3.3.1",
     "node-telegram-bot-api": "0.61.0",
     "openai": "3.2.1"
   },
