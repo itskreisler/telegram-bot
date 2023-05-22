@@ -1,8 +1,6 @@
 # 🤩👉 TIKTOK DL - telegram bot
 
-### Download videos of tiktok, NO WATERMARK ✅
-
-###
+## Download videos of tiktok, NO WATERMARK ✅
 
 ## How to use? 🤔
 
