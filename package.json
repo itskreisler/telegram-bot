@@ -27,7 +27,8 @@
     "lodash": "4.17.21",
     "node-fetch": "3.3.1",
     "node-telegram-bot-api": "0.61.0",
-    "openai": "3.2.1"
+    "openai": "3.2.1",
+    "puppeteer": "20.3.0"
   },
   "devDependencies": {
     "axios": "1.4.0",

@@ -24,6 +24,7 @@ tmp
 .vscode/*
 !.vscode/extensions.json
 .idea
+.cache
 .DS_Store
 *.suo
 *.ntvs*
