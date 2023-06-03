@@ -1,6 +1,6 @@
 {
   "name": "bot-telegram-beta",
-  "version": "1.0.2",
+  "version": "1.5.0",
   "description": "multiples implementaciones",
   "main": "bot.js",
   "type": "module",
@@ -40,7 +40,6 @@
     "path": "0.12.7",
     "prettysize": "latest",
     "querystring": "0.2.1",
-    "request": "latest",
     "standard": "17.1.0",
     "url": "0.11.0"
   }
