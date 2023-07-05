@@ -20,6 +20,7 @@ lib/tmp/**
 lib/mooks/**
 temp
 tmp
+test
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
