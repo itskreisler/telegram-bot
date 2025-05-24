@@ -22,14 +22,15 @@
   "license": "ISC",
   "dependencies": {
     "@kreisler/js-helpers": "^3.6.0",
-    "@types/node-telegram-bot-api": "^0.64.2",
+    "@types/node-telegram-bot-api": "^0.64.7",
     "archiver": "^6.0.1",
+    "instagram-url-direct": "^2.0.6",
     "node-fetch": "3.3.2",
-    "node-telegram-bot-api": "0.64.0",
+    "node-telegram-bot-api": "^0.63.0",
     "openai": "4.28.0",
     "playwright": "1.42.0",
     "twitter-api-v2": "^1.16.0",
-    "youtube-dl-exec": "2.5.7"
+    "youtube-dl-exec": "^3.0.10"
   },
   "devDependencies": {
     "axios": "1.6.7",
