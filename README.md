@@ -42,12 +42,12 @@ screen -r mi_sesion
 
 ### Commands 😎👍
 
-- `/start` - Start the bot
-- `/help` - Show help
-- `/tiktok <link>` - Download TikTok video (with or without watermark)
-- `/clima <ciudad>` - Get weather for a city (wttr.in)
-- `/demucs` - Separate vocals from instrumental (reply to an audio)
-- `/stw` - Get random image from Sebastian Torres
-- `/restart` - Restart the bot (owner only)
+- `/start` - Inicia el bot
+- `/help` - Muestra ayuda
+- `/tiktok <link>` - Descarga video de TikTok (con o sin marca de agua)
+- `/clima <ciudad>` - Obtiene el clima de una ciudad (usa wttr.in)
+- `/demucs` - Separa voces del instrumental (responder a un audio)
+- `/stw` - Obtiene imagen diaria de STW Daily
+- `/restart` - Reinicia el bot (solo owner)
 
 ### The bot already detects tiktok links and changes the language to English and Spanish (more languages ​​can be added) 😎👍
