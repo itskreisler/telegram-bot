@@ -35,5 +35,6 @@ test
 *.test.cjs
 *.test.mjs
 *.test.js
+*.txt
 .env
 package-lock.json
