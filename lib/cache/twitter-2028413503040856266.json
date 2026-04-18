@@ -1,0 +1,193 @@
+{
+  "mediaVideo": [
+    {
+      "display_url": "pic.x.com/63aLez4wp7",
+      "expanded_url": "https://x.com/qazxx200622/status/2028413503040856266/photo/1",
+      "ext_media_availability": {
+        "status": "Available"
+      },
+      "features": {
+        "large": {
+          "faces": []
+        },
+        "medium": {
+          "faces": []
+        },
+        "orig": {
+          "faces": []
+        },
+        "small": {
+          "faces": []
+        }
+      },
+      "id_str": "2028413495512113152",
+      "indices": [
+        9,
+        32
+      ],
+      "media_key": "3_2028413495512113152",
+      "media_results": {
+        "result": {
+          "media_key": "3_2028413495512113152"
+        }
+      },
+      "media_url_https": "https://pbs.twimg.com/media/HCZfU8GboAASiSy.jpg",
+      "original_info": {
+        "focus_rects": [
+          {
+            "h": 860,
+            "w": 1536,
+            "x": 0,
+            "y": 1054
+          },
+          {
+            "h": 1536,
+            "w": 1536,
+            "x": 0,
+            "y": 512
+          },
+          {
+            "h": 1751,
+            "w": 1536,
+            "x": 0,
+            "y": 297
+          },
+          {
+            "h": 2048,
+            "w": 1024,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "h": 2048,
+            "w": 1536,
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "height": 2048,
+        "width": 1536
+      },
+      "sizes": {
+        "large": {
+          "h": 2048,
+          "resize": "fit",
+          "w": 1536
+        },
+        "medium": {
+          "h": 1200,
+          "resize": "fit",
+          "w": 900
+        },
+        "small": {
+          "h": 680,
+          "resize": "fit",
+          "w": 510
+        },
+        "thumb": {
+          "h": 150,
+          "resize": "crop",
+          "w": 150
+        }
+      },
+      "type": "photo",
+      "url": "https://t.co/63aLez4wp7"
+    }
+  ],
+  "mediaImgs": [
+    {
+      "display_url": "pic.x.com/63aLez4wp7",
+      "expanded_url": "https://x.com/qazxx200622/status/2028413503040856266/photo/1",
+      "ext_media_availability": {
+        "status": "Available"
+      },
+      "features": {
+        "large": {
+          "faces": []
+        },
+        "medium": {
+          "faces": []
+        },
+        "orig": {
+          "faces": []
+        },
+        "small": {
+          "faces": []
+        }
+      },
+      "id_str": "2028413495512113152",
+      "indices": [
+        9,
+        32
+      ],
+      "media_key": "3_2028413495512113152",
+      "media_results": {
+        "result": {
+          "media_key": "3_2028413495512113152"
+        }
+      },
+      "media_url_https": "https://pbs.twimg.com/media/HCZfU8GboAASiSy.jpg",
+      "original_info": {
+        "focus_rects": [
+          {
+            "h": 860,
+            "w": 1536,
+            "x": 0,
+            "y": 1054
+          },
+          {
+            "h": 1536,
+            "w": 1536,
+            "x": 0,
+            "y": 512
+          },
+          {
+            "h": 1751,
+            "w": 1536,
+            "x": 0,
+            "y": 297
+          },
+          {
+            "h": 2048,
+            "w": 1024,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "h": 2048,
+            "w": 1536,
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "height": 2048,
+        "width": 1536
+      },
+      "sizes": {
+        "large": {
+          "h": 2048,
+          "resize": "fit",
+          "w": 1536
+        },
+        "medium": {
+          "h": 1200,
+          "resize": "fit",
+          "w": 900
+        },
+        "small": {
+          "h": 680,
+          "resize": "fit",
+          "w": 510
+        },
+        "thumb": {
+          "h": 150,
+          "resize": "crop",
+          "w": 150
+        }
+      },
+      "type": "photo",
+      "url": "https://t.co/63aLez4wp7"
+    }
+  ],
+  "fullText": "扣1帮主播助力！ https://t.co/63aLez4wp7"
+}

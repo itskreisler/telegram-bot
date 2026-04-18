@@ -2,6 +2,7 @@
 
 # Script para descargar música de Spotify usando spotdl + yt-dlp
 # Uso: ./spotify-dl.sh <spotify_url> [output_dir]
+# Configuración: MAX_SONGS=20 ./spotify-dl.sh <url> [output_dir]
 
 # Removido set -e para que no falle por errores de fragmentos de yt-dlp
 
@@ -16,10 +17,19 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 COOKIES_FILE="$SCRIPT_DIR/a.txt"
 OUTPUT_DIR="${2:-$SCRIPT_DIR/temp}"
 
+# Configuración ajustable
+MAX_SONGS="${MAX_SONGS:-10}"  # Límite de canciones (configurable con variable de entorno)
+
 # Validar argumentos
 if [ -z "$1" ]; then
     echo -e "${RED}Error: Debes proporcionar un link de Spotify${NC}"
     echo "Uso: $0 <spotify_url> [output_dir]"
+    echo "Configuración: MAX_SONGS=20 $0 <spotify_url> [output_dir]"
+    echo ""
+    echo "Ejemplos:"
+    echo "  $0 https://open.spotify.com/track/..."
+    echo "  $0 https://open.spotify.com/playlist/... /tmp/musica"
+    echo "  MAX_SONGS=20 $0 https://open.spotify.com/playlist/..."
     exit 1
 fi
 
@@ -45,6 +55,7 @@ echo -e "${GREEN}=== Spotify Downloader ===${NC}"
 echo "URL: $SPOTIFY_URL"
 echo "Salida: $OUTPUT_DIR"
 echo "Cookies: $COOKIES_FILE"
+echo "Límite: $MAX_SONGS canciones"
 echo ""
 
 # Paso 1: Extraer URLs de YouTube Music usando spotdl
@@ -53,7 +64,7 @@ TEMP_URLS="/tmp/spotify_urls_$$.txt"
 
 spotdl --log-level ERROR "$SPOTIFY_URL" 2>&1 | \
     grep -oP 'https://music\.youtube\.com/watch\?v=[a-zA-Z0-9_-]+' | \
-    sort -u > "$TEMP_URLS"
+    sort -u | head -n "$MAX_SONGS" > "$TEMP_URLS"
 
 TOTAL_SONGS=$(wc -l < "$TEMP_URLS")
 
