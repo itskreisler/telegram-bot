@@ -46,8 +46,29 @@ screen -r mi_sesion
 - `/help` - Muestra ayuda
 - `/tiktok <link>` - Descarga video de TikTok (con o sin marca de agua)
 - `/clima <ciudad>` - Obtiene el clima de una ciudad (usa wttr.in)
+- `/tidal <id>` - Descarga track de TIDAL por ID (FLAC)
+- `/tidal q <busqueda>` - Busca canciones en TIDAL
+- `/tidal a <artista>` - Busca artistas
+- `/tidal al <album>` - Busca álbumes
 - `/demucs` - Separa voces del instrumental (responder a un audio)
 - `/stw` - Obtiene imagen diaria de STW Daily
 - `/restart` - Reinicia el bot (solo owner)
+
+### Paginación 🔄
+
+Los resultados de búsqueda de TIDAL se paginan (5 por página). Usa los botones ⬅️ ➡️ para navegar.
+
+Cada resultado tiene un botón de descarga (⬇️ para canciones/videos, 📥 para artistas/álbumes/playlists).
+
+### Inline Query 🔍
+
+- `@meutilbot q shakira` - Busca todo
+- `@meutilbot s rock` - Solo canciones
+- `@meutilbot a metallica` - Solo artistas
+- `@meutilbot al beyonce` - Solo álbumes
+- `@meutilbot p chill` - Solo playlists
+- `@meutilbot v live` - Solo vídeos
+
+Selecciona un resultado y se enviará `/tidal {id}` para descargar
 
 ### The bot already detects tiktok links and changes the language to English and Spanish (more languages ​​can be added) 😎👍
