@@ -40,4 +40,14 @@ screen -X -S mi_sesion kill
 screen -r mi_sesion
 ```
 
+### Commands 😎👍
+
+- `/start` - Start the bot
+- `/help` - Show help
+- `/tiktok <link>` - Download TikTok video (with or without watermark)
+- `/clima <ciudad>` - Get weather for a city (wttr.in)
+- `/demucs` - Separate vocals from instrumental (reply to an audio)
+- `/stw` - Get random image from Sebastian Torres
+- `/restart` - Restart the bot (owner only)
+
 ### The bot already detects tiktok links and changes the language to English and Spanish (more languages ​​can be added) 😎👍
