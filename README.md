@@ -1,70 +1,84 @@
-# 🤩👉 TIKTOK DL - telegram bot
+# Telegram Bot - UtilBot
 
-## Download videos of tiktok, NO WATERMARK ✅
+Bot multifuncional de Telegram con soporte para descarga de TikTok, YouTube, TIDAL/Qobuz, clima, IA, cron y más.
 
-## How to use? 🤔
+## Características
 
-- Install the necessary dependencies with `npm install`
-- Get your bot token at [@BotFather](https://telegram.me/BotFather).
-- Copy your token and paste it into the variable named "TELEGRAM_TOKEN" .env file
-- Finally run script `npm run start`
+### TikTok
+- Detecta enlaces automáticamente y descarga videos sin watermark
+- Álbumes de fotos con soporte para MediaGroup
+- Fallback: descarga por URL → buffer HD → buffer SD → cover
+- Sigue redirects de CDN de TikTok
 
-## Termux fix
+### YouTube
+- Detecta enlaces automáticamente y descarga audio (MP3)
+- Botón **🎬 Descargar Video** con selector de calidad: 360p, 720p, 1080p, Mejor calidad
+- Miniaturas del video
 
-- INSTALL GLOBAL NPM PACKAGES
+### TIDAL / Qobuz
+- Búsqueda y descarga de tracks, álbumes, playlists y videos
+- Fallback automático: TIDAL (Monochrome) → Qobuz (por ISRC)
+- Calidad FLAC sin pérdida
+- Paginación en resultados
 
-```node
-npm config set unsafe-perm true
+### Otros comandos
+- `/clima` - Clima por ciudad
+- `/google` - Búsqueda en Google
+- `/cron` - Tareas programadas con expresión cron
+- `/demucs` - Separación de voces e instrumentos
+- `/stw` - Imagen diaria STW Daily
+- `/ama` / `/whatif` - Preguntas a IA
+- `/sticker` - Crear stickers
+
+## Instalación
+
+```bash
+npm install
+cp .env.example .env
+# Editar .env con tu token de bot
 ```
 
-- CLEAN CACHE
+## Uso
 
-```node
-npm cache clean
+```bash
+npm run prod:lib     # Producción
+npm run dev:lib      # Desarrollo con nodemon
 ```
 
-- BYPASS SYMLINK ISSUES
+### Servidor Local (opcional)
 
-```node
-npm install --no-bin-links
+Para límites mayores de subida (2000 MB):
+
+```bash
+# Compilar e instalar telegram-bot-api (https://github.com/tdlib/telegram-bot-api)
+# Luego configurar en .env:
+TELEGRAM_BASE_URL=http://localhost:8081
 ```
 
-## run sh
-
-```sh
-# screen -S [name]
-screen -S mi_sesion
-# screen -X -S [session # you want to kill] kill
-screen -X -S mi_sesion kill
-# screen -r [session # you want to resume]
-screen -r mi_sesion
-```
-
-### Commands 😎👍
+## Comandos
 
 - `/start` - Inicia el bot
 - `/help` - Muestra ayuda
-- `/ping` - Responde con pong (verifica que el bot responde)
-- `/tiktok <link>` - Descarga video de TikTok (con o sin marca de agua)
-- `/clima <ciudad>` - Obtiene el clima de una ciudad (usa wttr.in)
-- `/google <consulta>` - Busca en Google y devuelve resultados
-- `/tidal <id>` - Descarga track de TIDAL por ID (FLAC con fallback a Qobuz)
-- `/tidal q <busqueda>` - Busca canciones en TIDAL
-- `/tidal a <artista>` - Busca artistas
-- `/tidal al <album>` - Busca álbumes
-- `/tidal p <playlist>` - Busca playlists
-- `/tidal v <video>` - Busca videos
-- `/cron -e "cron" -url <url> -t json|file [-r returnPath] [-m template]` - Programa tareas periódicas
-- `/cron list` - Lista tareas activas
-- `/cron delete <nombre>` - Elimina una tarea
-- `/demucs` - Separa voces del instrumental (responder a un audio)
-- `/stw` - Obtiene imagen diaria de STW Daily
-- `/donate` - Información de donaciones
-- `/sticker` - Crea stickers
-- `/uptime` - Muestra el tiempo activo del bot
-- `/ama` - Pregunta a la IA
-- `/whatif` - Pregunta "¿Qué pasaría si?" a la IA
-- `/restart` - Reinicia el bot (solo owner)
+- `/ping` - Responde con pong
+- `/clima <ciudad>` - Clima
+- `/google <consulta>` - Búsqueda Google
+- `/tidal <id>` - Descargar track TIDAL
+- `/tidal q <busqueda>` - Buscar canciones
+- `/tidal a <artista>` - Buscar artistas
+- `/tidal al <album>` - Buscar álbumes
+- `/tidal p <playlist>` - Buscar playlists
+- `/tidal v <video>` - Buscar videos
+- `/cron -e "cron" -url <url> -t json|file [-r returnPath] [-m template]` - Programar tarea
+- `/cron list` - Listar tareas
+- `/cron delete <nombre>` - Eliminar tarea
+- `/demucs` - Separar audio
+- `/stw` - STW Daily
+- `/donate` - Donaciones
+- `/sticker` - Crear stickers
+- `/uptime` - Tiempo activo
+- `/ama` - Preguntar a IA
+- `/whatif` - ¿Qué pasaría si?
+- `/restart` - Reiniciar bot (solo owner)
 
 ### TIDAL con fallback a Qobuz 🔄
 
