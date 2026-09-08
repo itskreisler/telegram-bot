@@ -1,3 +1,6 @@
 allowBuilds:
   es5-ext: true
+  esbuild: true
   youtube-dl-exec: true
+minimumReleaseAgeExclude:
+  - '@types/node@26.5.0'
