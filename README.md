@@ -27,7 +27,7 @@ Bot multifuncional de Telegram con soporte para descarga de TikTok, YouTube, TID
 - `/cron` - Tareas programadas con expresión cron
 - `/demucs` - Separación de voces e instrumentos
 - `/stw` - Imagen diaria STW Daily
-- `/ama` / `/whatif` - Preguntas a IA
+- `/whatif` - Preguntas hipotéticas
 - `/sticker` - Crear stickers
 
 ## Instalación
@@ -42,7 +42,6 @@ cp .env.example .env
 
 ```bash
 npm run prod:lib     # Producción
-npm run dev:lib      # Desarrollo con nodemon
 ```
 
 ### Servidor Local (opcional)
@@ -76,7 +75,6 @@ TELEGRAM_BASE_URL=http://localhost:8081
 - `/donate` - Donaciones
 - `/sticker` - Crear stickers
 - `/uptime` - Tiempo activo
-- `/ama` - Preguntar a IA
 - `/whatif` - ¿Qué pasaría si?
 - `/restart` - Reiniciar bot (solo owner)
 

@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import 'colors'
 import fs from 'node:fs'
 import { ClientBot } from './core/main.js'

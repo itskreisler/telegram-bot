@@ -1,4 +1,5 @@
 import { loadEnvFile } from 'node:process'
+import { z } from 'zod'
 
 try {
   loadEnvFile()
@@ -24,36 +25,41 @@ const respuestas: string[] = [
   'Los astros aun no se alinean'
 ]
 
-export interface ConfigEnvTypes {
-  TELEGRAM_TOKEN_DEV?: string
-  TELEGRAM_TOKEN_PROD?: string
-  TELEGRAM_PREFIX?: string
-  USERNAME_BOT?: string
-  NODE_ENV?: string
-  AUTHORIZED_USERS?: string
-  OPENAI_API_KEY?: string
-  MAXSIZEBYTES?: string
-  RAPID_API_KEY_GLAVIER_TWITTER?: string
-  OWNER_ID?: number | string
-  [key: string]: any
-}
+const emptyToUndefined = (value: unknown) => value === '' ? undefined : value
+const optionalString = z.preprocess(emptyToUndefined, z.string().optional())
 
-export const configEnv: ConfigEnvTypes = { ...process.env }
+export const ConfigEnvSchema = z.object({
+  TELEGRAM_TOKEN_DEV: optionalString,
+  TELEGRAM_TOKEN_PROD: optionalString,
+  TELEGRAM_PREFIX: optionalString,
+  USERNAME_BOT: optionalString,
+  NODE_ENV: z.preprocess(
+    emptyToUndefined,
+    z.enum(['development', 'production']).default('development')
+  ),
+  AUTHORIZED_USERS: optionalString,
+  MAXSIZEBYTES: z.preprocess(emptyToUndefined, z.coerce.number().positive().optional()),
+  RAPID_API_KEY_GLAVIER_TWITTER: optionalString,
+  OWNER_ID: z.preprocess(emptyToUndefined, z.coerce.number().optional())
+}).passthrough()
 
-const authorizedUsersStr = process.env.AUTHORIZED_USERS || ''
+export type ConfigEnvTypes = z.infer<typeof ConfigEnvSchema>
+export const configEnv = ConfigEnvSchema.parse(process.env)
+
+const authorizedUsersStr = configEnv.AUTHORIZED_USERS || ''
 
 export const owners: Array<[string, number]> = authorizedUsersStr
   ? authorizedUsersStr.split(',').map((admins) => {
-      const [user, id] = admins.split(':')
-      return [user, parseInt(id, 10)]
-    })
+    const [user, id] = admins.split(':')
+    return [user, parseInt(id, 10)]
+  })
   : []
 
 export const ownersId: number[] = authorizedUsersStr
   ? authorizedUsersStr.split(',').map((admins) => {
-      const [, id] = admins.split(':')
-      return parseInt(id, 10)
-    })
+    const [, id] = admins.split(':')
+    return parseInt(id, 10)
+  })
   : []
 
 export function validateDomainTikTok(url: string): boolean {

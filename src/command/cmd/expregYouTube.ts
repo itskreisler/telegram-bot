@@ -71,6 +71,7 @@ export default {
       extractorArgs: 'youtube:player-client=default,-web_safari',
       remoteComponents: 'ejs:github'
     }
+    // 'yt-dlp --audio-quality 0 --extract-audio --audio-format mp3 --output ./tmp/1788840104203/%(title)s.%(ext)s --add-metadata --embed-thumbnail --no-playlist --cookies a.txt --update --js-runtimes node --extractor-args youtube:player-client=default,-web_safari --remote-components ejs:github -- {url}'
     const optionsEdits = {
       chat_id: chatId,
       message_id: sms.message_id

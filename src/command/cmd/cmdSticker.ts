@@ -1,6 +1,7 @@
 import axios from 'axios'
 import fs from 'node:fs'
 import { ZipArchive } from 'archiver'
+import { fromPath } from 'node-telegram-bot-api/node'
 import { configEnv } from '../../helpers/Helpers.js'
 import 'colors'
 
@@ -9,7 +10,7 @@ function archiver(format: string, options: any) {
   throw new Error(`Unsupported archiver format ${format}`)
 }
 
-function downloadFile (url: string, path: string): Promise<void> {
+function downloadFile(url: string, path: string): Promise<void> {
   return axios({
     url,
     method: 'GET',
@@ -27,7 +28,7 @@ function downloadFile (url: string, path: string): Promise<void> {
 export default {
   active: true,
   ExpReg: new RegExp(`^/st(?:ickers)?(?:@${configEnv.USERNAME_BOT})?$`, 'im'),
-  async cmd (client: any, msg: any) {
+  async cmd(client: any, msg: any) {
     const { chat: { id: chatId } } = msg
     if (msg.reply_to_message) {
       if (msg.reply_to_message.sticker) {
@@ -62,7 +63,7 @@ export default {
 
             output.on('close', () => {
               console.log(`Archivo ZIP creado correctamente: ${zipFilePath}`)
-              client.sendDocument(chatId, zipFilePath).then((doc: any) => {
+              fromPath(zipFilePath).then((document) => client.sendDocument(chatId, document)).then((doc: any) => {
                 deleteIsLoading()
                 client.sendMessage(chatId, `http://t.me/addstickers/${setName}`, { reply_parameters: { message_id: doc.message_id } })
                 fs.unlinkSync(zipFilePath)

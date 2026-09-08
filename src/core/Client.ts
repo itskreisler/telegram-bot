@@ -12,12 +12,14 @@ const options = {
 
 export class Client extends Bot {
   [key: string]: any
+  private readonly botToken: string
   commands = new Map<RegExp, any>()
   slashArray: any[] = []
   utils = new BotUtils(this)
 
   constructor(botToken = token, botOptions = options) {
     super(botToken || '', botOptions as any)
+    this.botToken = botToken || ''
   }
 
   async getMe() {
@@ -102,7 +104,7 @@ export class Client extends Bot {
   async getFileLink(fileId: string) {
     const file = await this.api.getFile({ file_id: fileId })
     if (file.file_path) {
-      return `https://api.telegram.org/file/bot${this.token}/${file.file_path}`
+      return `https://api.telegram.org/file/bot${this.botToken}/${file.file_path}`
     }
     return fileId
   }
@@ -171,7 +173,7 @@ export class Client extends Bot {
             if (COMANDO.active) this.commands.set(COMANDO.ExpReg, COMANDO)
           }
         } catch (e) {
-          console.log(`ERROR AL CARGAR EL COMANDO ${rutaArchivo}`.bgRed)
+          console.error(`ERROR AL CARGAR EL COMANDO ${rutaArchivo}`.bgRed, e)
         }
       }
       console.log(
@@ -261,6 +263,10 @@ export class Client extends Bot {
     await this.loadEvents()
     await this.loadHandlers()
     await this.loadCommands()
+    void this.startPolling().catch((error) => {
+      console.error('[Telegram] Polling detenido', error)
+      process.exitCode = 1
+    })
   }
 }
 
@@ -272,6 +278,6 @@ export default async function createBot() {
       `[Telegram] Telegram connection established. Logged in as: https://t.me/${me.username}`
         .rainbow
     )
-  }).catch(() => {})
+  }).catch(() => { })
   return client
 }
