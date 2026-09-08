@@ -2,13 +2,15 @@
   "name": "bot-telegram-beta",
   "version": "1.5.0",
   "description": "multiples implementaciones",
-  "main": "bot.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
-    "prod:lib": "node ./lib/index.js",
-    "dev:lib": "nodemon ./lib/index.js"
+    "dev": "tsx watch src/index.ts",
+    "dev:build": "tsup --watch --onSuccess \"node dist/index.js\"",
+    "prod:lib": "node ./dist/index.js",
+    "dev:lib": "nodemon ./dist/index.js"
   },
   "keywords": [],
   "author": "kreisler",
@@ -22,6 +24,8 @@
     "blueimp-tmpl": "^3.20.0",
     "node-fetch": "3.3.2",
     "node-telegram-bot-api": "^2.1.0",
+    "openai": "^7.10.0",
+    "playwright": "^1.63.0",
     "youtube-dl-exec": "^3.1.15",
     "zod": "^4.5.4",
     "zustand": "^5.0.15"
@@ -38,6 +42,7 @@
     "prettysize": "latest",
     "querystring": "0.2.1",
     "tsup": "^8.5.1",
+    "tsx": "^4.23.13",
     "typescript": "^7.0.2",
     "url": "0.11.4"
   }
