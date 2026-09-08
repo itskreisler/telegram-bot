@@ -10,7 +10,7 @@ let messageDebounced = null;
       ctx.client.sendMessage(
         ctx.msg.chat.id,
         '🚨 *Flood detectado*\n_Espera 5 segundos antes de volver a ejecutar un comando_',
-        { parse_mode: 'MarkdownV2', reply_to_message_id: ctx.msg.message_id }
+        { parse_mode: 'MarkdownV2', reply_parameters: { message_id: ctx.msg.message_id } }
       )
   })
 })()
@@ -33,6 +33,7 @@ module.exports = async (client, msg) => {
     chatUsername: chat.username || chat.first_name,
     fromUsername: from.username || from.first_name
   })
+console.log(JSON.stringify(msg,null,2))
   const [existe, [ExpReg, comando]] = client.findCommand(text)
   // cancela el comando si no existe
   if (!existe) return
@@ -44,7 +45,7 @@ module.exports = async (client, msg) => {
           `❌ *Solo los dueños de este bot pueden ejecutar este comando*\n*Dueños del bot:* ${owners
             .map(([user, id]) => `[${user}](tg://user?id=${id})`)
             .join(', ')}`,
-          { parse_mode: 'MarkdownV2', reply_to_message_id: msg.message_id }
+          { parse_mode: 'MarkdownV2', reply_parameters: { message_id: msg.message_id } }
         )
       }
     }

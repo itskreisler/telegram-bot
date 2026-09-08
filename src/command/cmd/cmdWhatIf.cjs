@@ -2,7 +2,7 @@
 const { configEnv, randomAnswer } = require('../../helpers/Helpers.cjs')
 
 module.exports = {
-  active: true,
+  active: false,
   ExpReg: new RegExp(
         `^/whatif(?:@${configEnv.USERNAME_BOT})?(\\s+)((.|\n)+)$|^/whatif(?:@${configEnv.USERNAME_BOT})?$`,
         'im'

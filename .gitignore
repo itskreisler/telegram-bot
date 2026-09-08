@@ -35,6 +35,8 @@ test
 *.test.cjs
 *.test.mjs
 *.test.js
+*.tar
+*.tar.gz
 *.txt
 .env
 package-lock.json

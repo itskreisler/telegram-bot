@@ -75,7 +75,7 @@ function parseArgs(raw) {
 }
 
 module.exports = {
-  active: true,
+  active: false,
   ExpReg: new RegExp(`^/(?:cron|c_t|c_d)(?:@${configEnv.USERNAME_BOT})?(?:\\s+(.+))?$`, 'im'),
   cron,
   tasks,

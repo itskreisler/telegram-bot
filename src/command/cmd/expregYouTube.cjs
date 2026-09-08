@@ -1,4 +1,8 @@
-const { exec } = require('youtube-dl-exec')
+//const { exec } = require('youtube-dl-exec')
+
+const { create } = require('youtube-dl-exec')
+
+const exec = create('yt-dlp')
 const { glob } = require('glob')
 const fs = require('fs')
 const VIDEO_TYPES = Object.freeze({ embed: 'embed', shorts: 'shorts' })
@@ -72,7 +76,7 @@ module.exports = {
       noPlaylist: true,
       cookies: 'a.txt',
       update: true,
-      jsRuntimes: 'deno',
+      jsRuntimes: 'node',
       extractorArgs: 'youtube:player-client=default,-web_safari',
       remoteComponents: 'ejs:github'
     }

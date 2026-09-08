@@ -5,5 +5,5 @@ if (!fs.existsSync('./tmp/')) {
   fs.mkdirSync('./tmp/')
 }
 
-const Bot = require('./core/Client.cjs');
-(async () => new Bot())()
+const createBot = require('./core/Client.cjs')
+createBot()

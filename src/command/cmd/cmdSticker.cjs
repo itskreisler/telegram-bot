@@ -69,7 +69,7 @@ module.exports = {
               // Envía el archivo ZIP al usuario aquí
               client.sendDocument(chatId, zipFilePath).then((doc) => {
                 deleteIsLoading()
-                client.sendMessage(chatId, `http://t.me/addstickers/${setName}`, { reply_to_message_id: doc.message_id })
+                client.sendMessage(chatId, `http://t.me/addstickers/${setName}`, { reply_parameters: { message_id: doc.message_id } })
                 fs.unlinkSync(zipFilePath)
                 stickerLinks.forEach((url) => {
                   const filePath = `./temp/${setName}_${url.split('/').pop()}`

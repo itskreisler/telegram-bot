@@ -70,7 +70,7 @@ function runDemucs (inputFile, outputDir) {
  *用法: Responder a un audio/voice con /demucs
  */
 module.exports = {
-  active: true,
+  active: false,
   ExpReg: new RegExp(`^/demucs(?:@${USERNAME_BOT})?$`, 'im'),
   /**
    * @param {import('node-telegram-bot-api')} client
